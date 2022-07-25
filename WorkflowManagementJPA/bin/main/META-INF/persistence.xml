@@ -8,6 +8,11 @@
     <!-- begin entities  -->
 	
 	<class>com.nmk.cardinal.entities.User</class>
+	<class>com.nmk.cardinal.entities.Workspace</class>
+	<class>com.nmk.cardinal.entities.Deck</class>
+	<class>com.nmk.cardinal.entities.Card</class>
+	<class>com.nmk.cardinal.entities.Message</class>
+	<class>com.nmk.cardinal.entities.Chat</class>
 
     
     <!-- end entities  -->
