@@ -7,7 +7,7 @@
     
     <!-- begin entities  -->
 	
-	<class>com.nmk.cardinal.User</class>
+	<class>com.nmk.cardinal.entities.User</class>
 
     
     <!-- end entities  -->
