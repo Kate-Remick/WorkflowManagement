@@ -45,7 +45,12 @@ class MessageTest {
 	void test1() {
 		assertNotNull(message);
 		assertEquals(message.getContent(), "Hey");
-		
 	}
+	@Test
+	@DisplayName("testing messsage to user mappings")
+	void test2() {
+		assertNotNull(message.getUser().getFirstName(), "testUser");
+	}
+	
 
 }

@@ -48,5 +48,19 @@ class UserTest {
 		assertEquals(user.getUsername(), "test");
 		
 	}
-
+	@Test
+	@DisplayName("testing user to card mappings")
+	void test2() {
+		assertNotNull(user.getCards().size() > 0);
+	}
+	@Test
+	@DisplayName("testing user to workspace mappings")
+	void test3() {
+		assertNotNull(user.getWorkspaces().size() > 0);
+	}
+	@Test
+	@DisplayName("testing user to managed workspace mappings")
+	void test4() {
+		assertNotNull(user.getManagedWorkspaces().size() > 0);
+	}
 }

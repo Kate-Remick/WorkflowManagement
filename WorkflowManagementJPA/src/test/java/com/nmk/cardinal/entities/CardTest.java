@@ -1,6 +1,7 @@
 package com.nmk.cardinal.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -47,6 +48,19 @@ class CardTest {
 		assertEquals(card.getName(), " test deck card 1");
 		
 	}
-	
+	@Test
+	@DisplayName("testing card to deck mappings")
+	void test2() {
+		assertNotNull(card.getDeck());
+		assertEquals(card.getDeck().getName(), "test deck 1");
+		
+		
+	}
+	@Test
+	@DisplayName("testing card to user mappings")
+	void test3() {
+		assertNotNull(card.getDeck());
+		assertEquals(card.getAssignedUser().getFirstName(), "testUser");
+	}
 
 }
