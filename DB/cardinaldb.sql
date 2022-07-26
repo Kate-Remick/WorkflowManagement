@@ -32,18 +32,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `google_id` TEXT NULL,
   `active` TINYINT NOT NULL,
   `role` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `chat`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `chat` ;
-
-CREATE TABLE IF NOT EXISTS `chat` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 
@@ -60,18 +50,11 @@ CREATE TABLE IF NOT EXISTS `workspace` (
   `goal_date` DATETIME NULL,
   `active` TINYINT NOT NULL,
   `manager_id` INT NOT NULL,
-  `chat_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_workspace_user1_idx` (`manager_id` ASC),
-  INDEX `fk_workspace_chat1_idx` (`chat_id` ASC),
   CONSTRAINT `fk_workspace_user1`
     FOREIGN KEY (`manager_id`)
     REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_workspace_chat1`
-    FOREIGN KEY (`chat_id`)
-    REFERENCES `chat` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -124,6 +107,24 @@ CREATE TABLE IF NOT EXISTS `card` (
   CONSTRAINT `fk_card_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `chat`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `chat` ;
+
+CREATE TABLE IF NOT EXISTS `chat` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `workspace_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_chat_workspace1_idx` (`workspace_id` ASC),
+  CONSTRAINT `fk_chat_workspace1`
+    FOREIGN KEY (`workspace_id`)
+    REFERENCES `workspace` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -201,21 +202,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `chat`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `cardinaldb`;
-INSERT INTO `chat` (`id`) VALUES (1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `workspace`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cardinaldb`;
-INSERT INTO `workspace` (`id`, `name`, `description`, `created_at`, `goal_date`, `active`, `manager_id`, `chat_id`) VALUES (1, 'testWorkspace', 'test description', '2022-07-25 00:00:00', NULL, 1, 1, 1);
+INSERT INTO `workspace` (`id`, `name`, `description`, `created_at`, `goal_date`, `active`, `manager_id`) VALUES (1, 'testWorkspace', 'test description', '2022-07-25 00:00:00', NULL, 1, 1);
 
 COMMIT;
 
@@ -240,6 +231,16 @@ USE `cardinaldb`;
 INSERT INTO `card` (`id`, `name`, `description`, `due_date`, `created_at`, `updated_at`, `completed_at`, `completed`, `deck_id`, `user_id`) VALUES (1, ' test deck card 1', 'testdeck card1 description', NULL, '2022-07-01 00:00:00', NULL, NULL, 0, 1, 1);
 INSERT INTO `card` (`id`, `name`, `description`, `due_date`, `created_at`, `updated_at`, `completed_at`, `completed`, `deck_id`, `user_id`) VALUES (2, 'test deck card 2', 'testdeck card2 description', NULL, '2022-07-01 00:00:00', NULL, NULL, 0, 2, 1);
 INSERT INTO `card` (`id`, `name`, `description`, `due_date`, `created_at`, `updated_at`, `completed_at`, `completed`, `deck_id`, `user_id`) VALUES (3, 'test deck card 3', 'testdeck card3 description', NULL, '2022-07-01 00:00:00', NULL, NULL, 0, 3, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `chat`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cardinaldb`;
+INSERT INTO `chat` (`id`, `workspace_id`) VALUES (1, 1);
 
 COMMIT;
 

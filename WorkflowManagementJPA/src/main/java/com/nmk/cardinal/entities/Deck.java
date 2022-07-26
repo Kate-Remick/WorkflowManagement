@@ -1,11 +1,15 @@
 package com.nmk.cardinal.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Deck {
@@ -17,6 +21,13 @@ public class Deck {
 	private String name;
 	
 	private String description;
+	
+	@OneToMany(mappedBy="deck")
+	private List<Card> cards;
+	
+	@ManyToOne
+	@JoinColumn(name="workspace_id")
+	private Workspace workspace;
 	
 	public Deck() {}
 	
@@ -42,7 +53,7 @@ public class Deck {
 	}
 
 
-
+	
 	public int getId() {
 		return id;
 	}
@@ -50,6 +61,32 @@ public class Deck {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	
+
+	public List<Card> getCards() {
+		return cards;
+	}
+
+
+
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
+
+
+
+	public Workspace getWorkspace() {
+		return workspace;
+	}
+
+
+
+	public void setWorkspace(Workspace workspace) {
+		this.workspace = workspace;
+	}
+
+
 
 	public String getName() {
 		return name;
