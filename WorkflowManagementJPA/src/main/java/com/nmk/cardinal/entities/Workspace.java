@@ -1,6 +1,7 @@
 package com.nmk.cardinal.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,6 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -31,9 +37,33 @@ public class Workspace {
 	
 	private boolean active;
 	
+	@ManyToMany
+	@JoinTable(name="user_workspace", joinColumns=@JoinColumn(name="workspace_id"),
+	inverseJoinColumns = @JoinColumn(name="user_id"))
+	private List<User> users;
+	
+	@OneToMany(mappedBy="workspace")
+	private List<Deck> decks;
+	
+	@OneToMany(mappedBy="workspace")
+	private List<Chat> chats;
+	
+	@ManyToOne
+	@JoinColumn(name="manager_id")
+	private User manager; 
+	
 	public Workspace() {}
 	
 	
+
+	@Override
+	public String toString() {
+		return "Workspace [id=" + id + ", name=" + name + ", description=" + description + ", createdAt=" + createdAt
+				+ ", goalDate=" + goalDate + ", active=" + active + ", users=" + users + ", decks=" + decks + ", chats="
+				+ chats + ", manager=" + manager + "]";
+	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -102,6 +132,54 @@ public class Workspace {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+
+
+	public List<Deck> getDecks() {
+		return decks;
+	}
+
+
+
+	public void setDecks(List<Deck> decks) {
+		this.decks = decks;
+	}
+
+
+
+	public List<Chat> getChats() {
+		return chats;
+	}
+
+
+
+	public void setChats(List<Chat> chats) {
+		this.chats = chats;
+	}
+
+
+
+	public User getManager() {
+		return manager;
+	}
+
+
+
+	public void setManager(User manager) {
+		this.manager = manager;
 	}
 	
 	

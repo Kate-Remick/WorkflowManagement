@@ -23,7 +23,7 @@ public class Chat {
 	private Workspace workspace;
 	
 	@OneToMany(mappedBy="chat")
-	private List<Message> message;
+	private List<Message> messages;
 	
 	
 	public Chat() {}
@@ -43,13 +43,13 @@ public class Chat {
 
 
 	public List<Message> getMessage() {
-		return message;
+		return messages;
 	}
 
 
 
-	public void setMessage(List<Message> message) {
-		this.message = message;
+	public void setMessage(List<Message> messages) {
+		this.messages = messages;
 	}
 
 

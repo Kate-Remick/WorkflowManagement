@@ -47,5 +47,6 @@ class CardTest {
 		assertEquals(card.getName(), " test deck card 1");
 		
 	}
+	
 
 }
