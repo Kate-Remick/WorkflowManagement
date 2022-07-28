@@ -41,6 +41,7 @@ implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations',
   implementation "org.hibernate:hibernate-core:$hibernateVersion"
   implementation "org.hibernate:hibernate-c3p0:$hibernateVersion"
   testImplementation("org.junit.jupiter:junit-jupiter:$junit5Version")
+
 }
 
 test {
