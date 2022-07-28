@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nmk.cardinal.entities.User;
 import com.nmk.cardinal.services.UserService;
 
+@CrossOrigin({"*", "http://localhost:4200"})
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost:4200"})
 public class UserController {
 	
 	@Autowired
