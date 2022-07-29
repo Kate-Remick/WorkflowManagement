@@ -21,11 +21,7 @@ public class SecurityConfig {
 	@Autowired
 	private PasswordEncoder encoder;
 	
-<<<<<<< HEAD
 		@Bean
-=======
-	@Bean
->>>>>>> 134b902b41c582054ecf70680d10ee1d90a13fc7
 		public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 			http.csrf().disable()
 			.authorizeRequests()
