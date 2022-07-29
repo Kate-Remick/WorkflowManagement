@@ -1,5 +1,6 @@
 package com.nmk.cardinal.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,8 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class User{
@@ -38,6 +40,10 @@ public class User{
 	
 	@Column(name="google_id")
 	private String googleId;
+	
+	@CreationTimestamp
+	@Column(name="created_at")
+	private LocalDateTime createdAt;
 	
 	private boolean active;
 	
