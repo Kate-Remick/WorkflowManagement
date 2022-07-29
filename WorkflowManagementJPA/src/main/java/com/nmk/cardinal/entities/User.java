@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class User{
@@ -54,11 +55,17 @@ public class User{
 	@ManyToMany
 	@JoinTable(name="user_workspace", joinColumns=@JoinColumn(name="user_id"),
 	inverseJoinColumns = @JoinColumn(name="workspace_id"))
-	@JsonIgnore
+	@JsonIgnoreProperties({"decks", "chats", "users", "manager"})
 	private List<Workspace> workspaces;
 	
+	@ManyToMany
+	@JoinTable(name="user_chat", joinColumns=@JoinColumn(name="user_id"),
+	inverseJoinColumns = @JoinColumn(name="chat_id"))
+	@JsonIgnoreProperties({"users", "messages"})
+	private List<Chat> chats;
+	
 	@OneToMany(mappedBy="manager")
-	@JsonIgnore
+	@JsonIgnoreProperties({"decks", "chats", "users", "manager"})
 	private List<Workspace> managedWorkspaces;
 	
 	@OneToMany(mappedBy="user")

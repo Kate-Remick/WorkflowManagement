@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Chat {
@@ -24,6 +27,10 @@ public class Chat {
 	
 	@OneToMany(mappedBy="chat")
 	private List<Message> messages;
+	
+	@ManyToMany(mappedBy="chats")
+	@JsonIgnoreProperties({"chats", "workspaces", "managedWorkspaces", "cards", "messages"})
+	private List<User> users;
 	
 	
 	public Chat() {}
@@ -81,6 +88,18 @@ public class Chat {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 	
 	
