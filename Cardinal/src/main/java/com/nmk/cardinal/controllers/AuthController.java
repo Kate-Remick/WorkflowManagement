@@ -33,6 +33,7 @@ public class AuthController {
 
 	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
 	public User authenticate(Principal principal) {
+		System.out.println("Made it to the authenticate service");
 		return authService.getUserByUsername(principal.getName());
 	}
 
