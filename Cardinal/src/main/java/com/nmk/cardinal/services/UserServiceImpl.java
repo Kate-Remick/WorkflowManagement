@@ -112,6 +112,7 @@ public class UserServiceImpl implements UserService {
 		
 		if (existing != null && (existing.getUsername().equals(username) || sessionUser.getRole().equals("role_admin"))) {
 			existing.setEnabled(false);
+			existing = userRepo.saveAndFlush(existing);
 		}
 		
 		return !existing.isEnabled();
@@ -128,6 +129,7 @@ public class UserServiceImpl implements UserService {
 		
 		if (existing != null && (existing.getUsername().equals(username) || sessionUser.getRole().equals("role_admin"))) {
 			existing.setEnabled(true);
+			existing = userRepo.saveAndFlush(existing);
 		}
 		
 		return existing.isEnabled();		
