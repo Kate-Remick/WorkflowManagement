@@ -180,6 +180,30 @@ CREATE TABLE IF NOT EXISTS `user_workspace` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `user_chat`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_chat` ;
+
+CREATE TABLE IF NOT EXISTS `user_chat` (
+  `user_id` INT NOT NULL,
+  `chat_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `chat_id`),
+  INDEX `fk_user_has_chat_chat1_idx` (`chat_id` ASC),
+  INDEX `fk_user_has_chat_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_has_chat_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_chat_chat1`
+    FOREIGN KEY (`chat_id`)
+    REFERENCES `chat` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS cardinal@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -262,6 +286,16 @@ COMMIT;
 START TRANSACTION;
 USE `cardinaldb`;
 INSERT INTO `user_workspace` (`user_id`, `workspace_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_chat`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cardinaldb`;
+INSERT INTO `user_chat` (`user_id`, `chat_id`) VALUES (1, 1);
 
 COMMIT;
 
