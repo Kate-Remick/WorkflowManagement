@@ -1,5 +1,6 @@
 package com.nmk.cardinal.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,8 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User{
@@ -39,6 +43,10 @@ public class User{
 	@Column(name="google_id")
 	private String googleId;
 	
+	@CreationTimestamp
+	@Column(name="created_at")
+	private LocalDateTime createdAt;
+	
 	private boolean active;
 	
 	private String role;
@@ -46,22 +54,23 @@ public class User{
 	@ManyToMany
 	@JoinTable(name="user_workspace", joinColumns=@JoinColumn(name="user_id"),
 	inverseJoinColumns = @JoinColumn(name="workspace_id"))
+	@JsonIgnore
 	private List<Workspace> workspaces;
 	
 	@OneToMany(mappedBy="manager")
+	@JsonIgnore
 	private List<Workspace> managedWorkspaces;
 	
 	@OneToMany(mappedBy="user")
+	@JsonIgnore
 	private List<Message> messages;
 	
 	@OneToMany(mappedBy="assignedUser")
+	@JsonIgnore
 	private List<Card> cards;
 	
 	public User() {}
 	
-	
-
-
 
 	@Override
 	public String toString() {

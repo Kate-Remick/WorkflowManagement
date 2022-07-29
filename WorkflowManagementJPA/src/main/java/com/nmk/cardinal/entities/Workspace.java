@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Workspace {
 	
@@ -40,6 +42,7 @@ public class Workspace {
 	@ManyToMany
 	@JoinTable(name="user_workspace", joinColumns=@JoinColumn(name="workspace_id"),
 	inverseJoinColumns = @JoinColumn(name="user_id"))
+	@JsonIgnore
 	private List<User> users;
 	
 	@OneToMany(mappedBy="workspace")
