@@ -2,11 +2,9 @@ package com.nmk.cardinal.services;
 
 import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import com.nmk.cardinal.entities.User;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
 	
 	public User getUserById(int id);
 	

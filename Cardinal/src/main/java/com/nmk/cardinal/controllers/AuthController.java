@@ -26,13 +26,14 @@ public class AuthController {
 		if (user == null) {
 			res.setStatus(400);
 		}
-		user.setActive(true);
+		user.setEnabled(true);
 		user = authService.register(user);
 		return user;
 	}
 
 	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
 	public User authenticate(Principal principal) {
+		System.out.println("Made it to the authenticate service");
 		return authService.getUserByUsername(principal.getName());
 	}
 
