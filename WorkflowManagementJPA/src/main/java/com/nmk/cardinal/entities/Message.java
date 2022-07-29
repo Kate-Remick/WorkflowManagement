@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -23,6 +25,15 @@ public class Message {
 	private LocalDateTime createdAt;
 	
 	private String content;
+	
+	@ManyToOne
+	@JoinColumn(name="chat_id")
+	private Chat chat;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	
 	public Message() {}
 	
@@ -56,6 +67,32 @@ public class Message {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	
+
+	public Chat getChat() {
+		return chat;
+	}
+
+
+
+	public void setChat(Chat chat) {
+		this.chat = chat;
+	}
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 	public LocalDateTime getCreatedAt() {
 		return createdAt;

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -39,9 +41,41 @@ public class Card {
 	
 	private boolean completed;
 	
+	@ManyToOne
+	@JoinColumn(name="deck_id")
+	private Deck deck;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User assignedUser;
+	
 	public Card() {}
 	
 	
+
+	public Deck getDeck() {
+		return deck;
+	}
+
+
+
+	public void setDeck(Deck deck) {
+		this.deck = deck;
+	}
+
+
+
+	public User getAssignedUser() {
+		return assignedUser;
+	}
+
+
+
+	public void setAssignedUser(User assignedUser) {
+		this.assignedUser = assignedUser;
+	}
+
+
 
 	@Override
 	public int hashCode() {

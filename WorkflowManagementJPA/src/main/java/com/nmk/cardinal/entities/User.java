@@ -1,5 +1,6 @@
 package com.nmk.cardinal.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User{
@@ -37,22 +43,35 @@ public class User{
 	
 	private String role;
 	
+	@ManyToMany
+	@JoinTable(name="user_workspace", joinColumns=@JoinColumn(name="user_id"),
+	inverseJoinColumns = @JoinColumn(name="workspace_id"))
+	private List<Workspace> workspaces;
 	
+	@OneToMany(mappedBy="manager")
+	private List<Workspace> managedWorkspaces;
+	
+	@OneToMany(mappedBy="user")
+	private List<Message> messages;
+	
+	@OneToMany(mappedBy="assignedUser")
+	private List<Card> cards;
 	
 	public User() {}
 	
 	
 
+
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=");
-		builder.append(id);
-		builder.append(", username=");
-		builder.append(username);
-		builder.append("]");
-		return builder.toString();
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", username=" + username + ", password=" + password + ", imgUrl=" + imgUrl + ", googleId=" + googleId
+				+ ", active=" + active + ", role=" + role + ", workspaces=" + workspaces + ", managedWorkspaces="
+				+ managedWorkspaces + ", messages=" + messages + ", cards=" + cards + "]";
 	}
+
+
 
 
 
@@ -135,6 +154,54 @@ public class User{
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public List<Workspace> getWorkspaces() {
+		return workspaces;
+	}
+
+
+
+	public void setWorkspaces(List<Workspace> workspaces) {
+		this.workspaces = workspaces;
+	}
+
+
+
+	public List<Workspace> getManagedWorkspaces() {
+		return managedWorkspaces;
+	}
+
+
+
+	public void setManagedWorkspaces(List<Workspace> managedWorkspaces) {
+		this.managedWorkspaces = managedWorkspaces;
+	}
+
+
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+
+
+
+	public List<Card> getCards() {
+		return cards;
+	}
+
+
+
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
+
+
 
 	@Override
 	public int hashCode() {

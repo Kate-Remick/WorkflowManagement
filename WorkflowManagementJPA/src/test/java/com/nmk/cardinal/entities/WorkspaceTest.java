@@ -45,7 +45,21 @@ class WorkspaceTest {
 	void test1() {
 		assertNotNull(workspace);
 		assertEquals(workspace.getName(), "testWorkspace");
-		
+	}
+	@Test
+	@DisplayName("testing workspace to user mappings")
+	void test2() {
+		assertNotNull(workspace.getUsers().size() > 0);
+	}
+	@Test
+	@DisplayName("testing workspace to deck mappings")
+	void test3() {
+		assertNotNull(workspace.getDecks().size() > 0);
+	}
+	@Test
+	@DisplayName("testing workspace to chat mapping")
+	void test4() {
+		assertNotNull(workspace.getChats().size() > 0);
 	}
 
 }

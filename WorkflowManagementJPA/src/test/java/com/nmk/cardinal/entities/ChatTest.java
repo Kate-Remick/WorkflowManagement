@@ -1,6 +1,6 @@
 package com.nmk.cardinal.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,8 +44,17 @@ class ChatTest {
 	@DisplayName("testing basic user mappings")
 	void test1() {
 		assertNotNull(chat);
-		
-		
 	}
+	@Test
+	@DisplayName("testing chat to message mapping")
+	void test2() {
+		assertNotNull(chat.getMessages().size() > 0);
+	}
+	@Test
+	@DisplayName("testing chat to workspace mapping")
+	void test3() {
+		assertNotNull(chat.getWorkspace().getName(), "testWorkspace");
+	}
+	
 
 }

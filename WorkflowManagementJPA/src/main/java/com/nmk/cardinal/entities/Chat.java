@@ -1,11 +1,15 @@
 package com.nmk.cardinal.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Chat {
@@ -14,10 +18,41 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@ManyToOne
+	@JoinColumn(name="workspace_id")
+	private Workspace workspace;
+	
+	@OneToMany(mappedBy="chat")
+	private List<Message> messages;
+	
 	
 	public Chat() {}
 	
 	
+
+	public Workspace getWorkspace() {
+		return workspace;
+	}
+
+
+
+	public void setWorkspace(Workspace workspace) {
+		this.workspace = workspace;
+	}
+
+
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+
+
 
 	@Override
 	public int hashCode() {
