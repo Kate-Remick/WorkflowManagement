@@ -48,7 +48,8 @@ public class User{
 	@Column(name="created_at")
 	private LocalDateTime createdAt;
 	
-	private boolean active;
+	@Column(name="active")
+	private boolean enabled;
 	
 	private String role;
 	
@@ -83,7 +84,7 @@ public class User{
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", username=" + username + ", password=" + password + ", imgUrl=" + imgUrl + ", googleId=" + googleId
-				+ ", active=" + active + ", role=" + role + ", workspaces=" + workspaces + ", managedWorkspaces="
+				+ ", active=" + enabled + ", role=" + role + ", workspaces=" + workspaces + ", managedWorkspaces="
 				+ managedWorkspaces + ", messages=" + messages + ", cards=" + cards + "]";
 	}
 
@@ -155,12 +156,12 @@ public class User{
 		this.googleId = googleId;
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setEnabled(boolean active) {
+		this.enabled = active;
 	}
 
 	public String getRole() {

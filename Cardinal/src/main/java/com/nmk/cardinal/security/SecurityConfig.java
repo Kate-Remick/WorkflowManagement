@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -21,8 +23,13 @@ public class SecurityConfig {
 	@Autowired
 	private PasswordEncoder encoder;
 	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
 		@Bean
 		public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+			http.authenticationProvider(authenticationProvider());
+			
 			http.csrf().disable()
 			.authorizeRequests()
 			 .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
@@ -40,7 +47,18 @@ public class SecurityConfig {
 			return http.build();
 			
 		}
-
+		
+		@Bean
+		public DaoAuthenticationProvider authenticationProvider() {
+		    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		     
+		    authProvider.setUserDetailsService(userDetailsService);
+		    authProvider.setPasswordEncoder(encoder);
+		 
+		    return authProvider;
+		}
+		
+		
 	@Autowired
 	  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	        // Check if username/password are valid, and user currently allowed to authenticate

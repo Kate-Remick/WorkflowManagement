@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.nmk.cardinal.entities.User;
@@ -48,7 +46,7 @@ public class UserServiceImpl implements UserService {
 		
 		if(users != null & !users.isEmpty()) {
 			for(User user: users) {
-				if (user.isActive()) {
+				if (user.isEnabled()) {
 					activeUsers.add(user);
 				}
 			}
@@ -113,10 +111,10 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		if (existing != null && (existing.getUsername().equals(username) || sessionUser.getRole().equals("role_admin"))) {
-			existing.setActive(false);
+			existing.setEnabled(false);
 		}
 		
-		return !existing.isActive();
+		return !existing.isEnabled();
 	}
 	
 	public boolean reactivate(String username, int id) {
@@ -129,16 +127,10 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		if (existing != null && (existing.getUsername().equals(username) || sessionUser.getRole().equals("role_admin"))) {
-			existing.setActive(true);
+			existing.setEnabled(true);
 		}
 		
-		return existing.isActive();		
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return existing.isEnabled();		
 	}
 
 }
