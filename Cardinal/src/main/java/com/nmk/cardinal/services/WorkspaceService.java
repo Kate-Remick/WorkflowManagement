@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.nmk.cardinal.entities.Workspace;
 
-@Service
 public interface WorkspaceService {
 
 	public List<Workspace> getManagedWorkspaces(String username);
@@ -17,7 +16,7 @@ public interface WorkspaceService {
 	
 	public Workspace addUsers(int workspaceId, String username, List<String> users);
 	
-	public Workspace addUser(int workspaceId, String username);
+	public Workspace addUser(int workspaceId, String username, String newUsername);
 	
 	public Workspace removeUser(Workspace workspace, String managerUsername, String username);
 	

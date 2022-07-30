@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.nmk.cardinal.entities.Card;
 import com.nmk.cardinal.entities.Deck;
 
-@Service
 public interface CardService {
 
 	public List<Card> getCardsByDeck(int deckId, String username);
