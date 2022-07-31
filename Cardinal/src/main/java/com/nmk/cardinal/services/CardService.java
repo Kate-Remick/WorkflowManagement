@@ -2,10 +2,9 @@ package com.nmk.cardinal.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.nmk.cardinal.entities.Card;
 import com.nmk.cardinal.entities.Deck;
+import com.nmk.cardinal.entities.Workspace;
 
 public interface CardService {
 
@@ -23,6 +22,6 @@ public interface CardService {
 	
 	public Card moveCardToNewDeck(Card card, Deck newDeck, String username);
 	
-	public Card assignCard(Card card, String username, String managerUsername);
+	public Card assignCard(Card card, String username, String managerUsername, Workspace workspace);
 	
 }
