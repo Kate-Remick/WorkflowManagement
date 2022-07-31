@@ -26,7 +26,7 @@ public class MessageServiceImpl implements MessageService{
 		User user = userRepo.findByUsername(username);
 		List<Message> messages = null;
 		if(user != null) {
-			messages = messageRepo.findByChat_IdEqualsSortByMessage_CreatedAt(chatId);
+			messages = messageRepo.findByChatId_OrderByCreatedAt(chatId);
 		}
 		return messages;
 	}
