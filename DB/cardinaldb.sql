@@ -220,7 +220,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cardinaldb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `created_at`, `img_url`, `google_id`, `active`, `role`) VALUES (1, 'test', 'password', 'testtest@test.com', 'testUser', 'testUserLast', '2022-07-25 00:00:00', NULL, NULL, 1, 'ROLE_ADMIN');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `created_at`, `img_url`, `google_id`, `active`, `role`) VALUES (1, 'test', '$2a$10$fpuwwm2l5qL30kpMowRxuuopytmHT5BTuRx20VFZisYTKF3ml38RG', 'testtest@test.com', 'testUser', 'testUserLast', '2022-07-25 00:00:00', NULL, NULL, 1, 'ROLE_ADMIN');
 
 COMMIT;
 
