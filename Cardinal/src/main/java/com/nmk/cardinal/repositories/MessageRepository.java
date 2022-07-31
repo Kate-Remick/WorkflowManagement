@@ -13,10 +13,10 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 
 	public List<Message> findByChatId_OrderByCreatedAt(@Param("chatId") int chatId);
 	
-	@Query("Select m FROM message m where m.chat.id = :chatId AND where m.createdAt GREATER THAN :date")
+	@Query("Select m FROM Message m where m.chat.id = :chatId AND m.createdAt > :date")
 	public List<Message> findByChatAndSince(@Param("chatId") int chatId, @Param("date") LocalDateTime date);
 	
-	@Query("Select m FROM message m where m.chat.id = :chatId AND where m.createdAt = :date")
+	@Query("Select m FROM Message m where m.chat.id = :chatId AND m.createdAt = :date")
 	public List<Message> findByChatAndDate(@Param("chatId") int chatId, @Param("date") LocalDateTime date);
 	
 	

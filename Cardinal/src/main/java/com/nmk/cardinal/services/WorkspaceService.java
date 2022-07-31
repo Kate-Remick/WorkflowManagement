@@ -2,8 +2,6 @@ package com.nmk.cardinal.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.nmk.cardinal.entities.Workspace;
 
 public interface WorkspaceService {
@@ -19,11 +17,12 @@ public interface WorkspaceService {
 	public Workspace addUser(int workspaceId, String username, String newUsername);
 	
 	public Workspace removeUser(Workspace workspace, String managerUsername, String username);
-	
+		
+	public void activateDeactivateWorkspace(Workspace workspace, String managerUsername);
+
 	public Workspace editWorkspace(Workspace workspace, Workspace newWorkspace, String managerUsername);
 	
-	public void activateDeactivateWorkspace(Workspace workspace, String managerUsername);
-	
+	public Workspace show(int id);
 	
 	
 	
