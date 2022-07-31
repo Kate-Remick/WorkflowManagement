@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Message {
 
@@ -28,10 +30,12 @@ public class Message {
 	
 	@ManyToOne
 	@JoinColumn(name="chat_id")
+	@JsonIgnoreProperties("messages")
 	private Chat chat;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonIgnoreProperties("messages")
 	private User user;
 	
 	

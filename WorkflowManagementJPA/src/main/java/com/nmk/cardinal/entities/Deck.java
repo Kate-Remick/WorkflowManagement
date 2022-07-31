@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Deck {
 
@@ -23,6 +25,7 @@ public class Deck {
 	private String description;
 	
 	@OneToMany(mappedBy="deck")
+	@JsonIgnoreProperties({"deck", "assignedUser"})
 	private List<Card> cards;
 	
 	@ManyToOne
