@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Card {
 
@@ -43,6 +45,7 @@ public class Card {
 	
 	@ManyToOne
 	@JoinColumn(name="deck_id")
+	@JsonIgnoreProperties({"cards", "workspace"})
 	private Deck deck;
 	
 	@ManyToOne
