@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Workspace {
@@ -46,9 +47,11 @@ public class Workspace {
 	private List<User> users;
 	
 	@OneToMany(mappedBy="workspace")
+	@JsonIgnoreProperties("workspace")
 	private List<Deck> decks;
 	
 	@OneToMany(mappedBy="workspace")
+	@JsonIgnoreProperties("workspace")
 	private List<Chat> chats;
 	
 	@ManyToOne
