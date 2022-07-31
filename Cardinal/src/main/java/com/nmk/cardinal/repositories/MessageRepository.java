@@ -4,18 +4,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.nmk.cardinal.entities.Message;
 
 public interface MessageRepository extends JpaRepository<Message, Integer> {
 
-	//Not 100% on these queries - could take some work
-	public List<Message> findByChat_IdEqualsSortByMessage_CreatedAt(@Param("chatId") int chatId);
+	public List<Message> findByChatId_OrderByCreatedAt(@Param("chatId") int chatId);
 	
-	//@Query(need to make this work)
-//	public List<Message> findByChatSortByDateGreaterThan(@Param("chatId") int chatId, @Param("createdAt") LocalDateTime createdAt);
+	@Query("Select m FROM message m where m.chat.id = :chatId AND where m.createdAt GREATER THAN :date")
+	public List<Message> findByChatAndSince(@Param("chatId") int chatId, @Param("date") LocalDateTime date);
 	
+	@Query("Select m FROM message m where m.chat.id = :chatId AND where m.createdAt = :date")
+	public List<Message> findByChatAndDate(@Param("chatId") int chatId, @Param("date") LocalDateTime date);
 	
 	
 }
