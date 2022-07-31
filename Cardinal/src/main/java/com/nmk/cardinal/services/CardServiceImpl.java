@@ -2,6 +2,7 @@ package com.nmk.cardinal.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,24 +47,28 @@ public class CardServiceImpl implements CardService{
 	}
 
 	@Override
-	public boolean deleteCard(Card card, String username) {
+	public boolean deleteCard(int cardId, String username) {
 		User user = userRepo.findByUsername(username);
 		if(user != null) {
-			cardRepo.delete(card);
+			cardRepo.deleteById(cardId);
 		}
-		return !cardRepo.equals(card);
+		return !cardRepo.existsById(cardId);
 	}
 
 	@Override
-	public Card editCard(Card currentCard, Card newCard, String username) {
+	public Card editCard(int cardId, Card newCard, String username) {
 		User user = userRepo.findByUsername(username);
+		Card currentCard = null;
 		if(user != null) {
-			currentCard.setName(newCard.getName());
-			currentCard.setDueDate(newCard.getDueDate());
-			currentCard.setDescription(newCard.getDescription());
-			currentCard = cardRepo.saveAndFlush(currentCard);
+			Optional<Card> op = cardRepo.findById(cardId);
+			if(op.isPresent()) {
+				currentCard = op.get();
+				currentCard.setName(newCard.getName());
+				currentCard.setDueDate(newCard.getDueDate());
+				currentCard.setDescription(newCard.getDescription());
+				currentCard = cardRepo.saveAndFlush(currentCard);
+			}
 		}
-		
 		return currentCard;
 	}
 

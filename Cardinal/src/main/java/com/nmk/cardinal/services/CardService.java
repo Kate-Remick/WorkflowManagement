@@ -14,9 +14,9 @@ public interface CardService {
 	
 	public Card createCard(Card newCard, String username);
 	
-	public boolean deleteCard(Card card, String username);
+	public boolean deleteCard(int cardId, String username);
 	
-	public Card editCard(Card currentCard, Card newCard, String username);
+	public Card editCard(int cardId,Card newCard, String username);
 	
 	public Card completeCard(Card card, String username);
 	

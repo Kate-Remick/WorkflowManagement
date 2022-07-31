@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -67,6 +69,35 @@ public class CardController {
 		return card;
 		
 	}
+	
+	@DeleteMapping("cards/{id}")
+	public void deleteCard(HttpServletResponse res, @PathVariable int id, Principal principal) {
+		try {
+			boolean deleted = cardServ.deleteCard(id, principal.getName());
+			if(deleted) {
+				res.setStatus(204);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+	}
+	
+	@PutMapping("cards/edit/{id}")
+	public Card editCard(HttpServletResponse res, @RequestBody Card newCard, Principal principal, @PathVariable int id) {
+		Card card = null;
+		try {
+			card = cardServ.editCard(id, newCard, principal.getName());
+			if(card == null) {
+				res.setStatus(500);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+		return card;
+	}
+	
 	
 	
 
