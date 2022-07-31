@@ -40,6 +40,8 @@ public class WorkspaceServiceImpl implements WorkspaceService{
 		if(user != null) {
 			newWorkspace.setManager(user);
 			newWorkspace = workRepo.saveAndFlush(newWorkspace);
+		} else {
+			newWorkspace = null;
 		}
 		return newWorkspace;
 	}
@@ -54,7 +56,7 @@ public class WorkspaceServiceImpl implements WorkspaceService{
 			workspace = op.get();
 			if(user.equals(workspace.getManager())){
 				for (String u : users) {
-					User addedUser = userRepo.findByUsername(username);
+					User addedUser = userRepo.findByUsername(u);
 					addedUsers.add(addedUser);
 				}
 				List<User> workspaceUsers = workspace.getUsers();
@@ -120,6 +122,18 @@ public class WorkspaceServiceImpl implements WorkspaceService{
 		}
 		
 		
+		
+		
+	}
+
+	@Override
+	public Workspace show(int id) {
+		Workspace workspace = null;
+		Optional<Workspace> opt = workRepo.findById(id);
+		if(opt.isPresent()) {
+			workspace = opt.get();
+		}
+		return workspace;
 	}
 
 	
