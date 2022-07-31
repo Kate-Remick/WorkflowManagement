@@ -85,6 +85,16 @@ public class ChatServiceImpl  implements ChatService{
 		
 	}
 
+	@Override
+	public List<Chat> getUserChats(String username) {
+		return chatRepo.findByUser_UsernameEquals(username);
+	}
+
+	@Override
+	public List<Chat> getWorkspaceChats(String username, int workspaceId) {
+		return chatRepo.findByUser_UsernameEqualsAndWorkspace_IdEquals(username, workspaceId);
+	}
+
 	
 	
 }

@@ -18,6 +18,9 @@ public interface ChatService {
 	
 	public void leaveChat(Chat chat, String username);
 	
+	public List<Chat> getUserChats(String username);
+	
+	public List<Chat> getWorkspaceChats(String username, int workspaceId);
 	
 	
 	
