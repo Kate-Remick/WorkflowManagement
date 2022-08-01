@@ -18,6 +18,8 @@ public interface DeckService {
 	
 	public Deck findById(int deckId, String username);
 	
+	public Deck editDeck(int deckId, String username, Deck newDeck);
+	
 	//This method may be better in card service
 	public Deck addCard(int deckId, Card newCard, String username);
 	

@@ -105,6 +105,24 @@ public class DeckServiceImpl implements DeckService{
 		return deck;
 	}
 
+	@Override
+	public Deck editDeck(int deckId, String username, Deck newDeck) {
+		User user = userRepo.findByUsername(username);
+		Deck deck = null;
+		//Edit for permissions?
+		if(user != null) {
+			Optional<Deck> op = deckRepo.findById(deckId);
+			if(op.isPresent()) {
+				deck = op.get();
+				deck.setDescription(newDeck.getDescription());
+				deck.setName(newDeck.getName());
+				deck = deckRepo.saveAndFlush(deck);
+			}
+		}
+		return deck;
+	}
+
+	
 	
 	
 }
