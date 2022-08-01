@@ -5,23 +5,29 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CardComponent } from './components/card/card.component';
-import { ChatComponent } from './components/chat/chat.component';
-import { DeckComponent } from './components/deck/deck.component';
-import { MessageComponent } from './components/message/message.component';
-import { UserComponent } from './components/user/user.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HelpComponent } from './components/help/help.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent,
-    ChatComponent,
-    DeckComponent,
-    MessageComponent,
-    UserComponent,
-    WorkspaceComponent
+    HomeComponent,
+    LoginComponent,
+    LogoutComponent,
+    WorkspaceComponent,
+    UserProfileComponent,
+    RegisterComponent,
+    HelpComponent,
+    NavbarComponent,
+
   ],
   imports: [
     BrowserModule,

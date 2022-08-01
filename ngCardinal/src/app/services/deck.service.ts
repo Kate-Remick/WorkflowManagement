@@ -6,4 +6,8 @@ import { Injectable } from '@angular/core';
 export class DeckService {
 
   constructor() { }
+
+  getCredentials(): string | null {
+    return localStorage.getItem('credentials');
+  }
 }
