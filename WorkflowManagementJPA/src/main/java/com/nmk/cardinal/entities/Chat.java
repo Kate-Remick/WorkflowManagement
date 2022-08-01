@@ -26,6 +26,7 @@ public class Chat {
 	private Workspace workspace;
 	
 	@OneToMany(mappedBy="chat")
+	@JsonIgnoreProperties("chat")
 	private List<Message> messages;
 	
 	@ManyToMany(mappedBy="chats")

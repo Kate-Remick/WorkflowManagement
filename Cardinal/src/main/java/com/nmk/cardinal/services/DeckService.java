@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.nmk.cardinal.entities.Card;
 import com.nmk.cardinal.entities.Deck;
 
-@Service
+
 public interface DeckService {
 
 	public List<Deck> retrieveDecksByWorkspaceId(int workspaceId);

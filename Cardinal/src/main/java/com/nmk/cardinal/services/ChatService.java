@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.nmk.cardinal.entities.Chat;
 import com.nmk.cardinal.entities.Workspace;
 
-@Service
+
 public interface ChatService {
 
 	public Chat createChat(Chat newChat, String username, Workspace workspace, List<String> users);
@@ -18,6 +18,9 @@ public interface ChatService {
 	
 	public void leaveChat(Chat chat, String username);
 	
+	public List<Chat> getUserChats(String username);
+	
+	public List<Chat> getWorkspaceChats(String username, int workspaceId);
 	
 	
 	
