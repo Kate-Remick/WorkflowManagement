@@ -13,7 +13,7 @@ public interface MessageService {
 	
 	public List<Message> getMessagesByDate(int chatId, String username, LocalDateTime date); 
 	
-	public Message createMessage(Chat chat, String username, Message message);
+	public Message createMessage(int chatId, String username, Message message);
 	
 	public Message editMessage(Message oldMessage, Message newMessage, String username);
 	

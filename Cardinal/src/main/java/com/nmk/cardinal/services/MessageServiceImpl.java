@@ -2,6 +2,7 @@ package com.nmk.cardinal.services;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.nmk.cardinal.entities.Chat;
 import com.nmk.cardinal.entities.Message;
 import com.nmk.cardinal.entities.User;
+import com.nmk.cardinal.repositories.ChatRepository;
 import com.nmk.cardinal.repositories.MessageRepository;
 import com.nmk.cardinal.repositories.UserRepository;
 
@@ -20,6 +22,9 @@ public class MessageServiceImpl implements MessageService{
 	
 	@Autowired
 	private MessageRepository messageRepo;
+	
+	@Autowired
+	private ChatRepository chatRepo;
 	
 	@Override
 	public List<Message> findByChatSortByDate(int chatId, String username) {
@@ -40,12 +45,15 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	@Override
-	public Message createMessage(Chat chat, String username, Message message) {
+	public Message createMessage(int id, String username, Message message) {
 		User user = userRepo.findByUsername(username);
 		if(user != null) {
-			message.setChat(chat);
-			message.setUser(user);
-			message = messageRepo.saveAndFlush(message);
+			Optional<Chat> op = chatRepo.findById(id);
+			if(op.isPresent()) {
+				message.setChat(op.get());
+				message.setUser(user);
+				message = messageRepo.saveAndFlush(message);
+			}
 		}
 		return message;
 	}
