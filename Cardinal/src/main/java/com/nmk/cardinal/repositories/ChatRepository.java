@@ -8,7 +8,10 @@ import org.springframework.data.repository.query.Param;
 import com.nmk.cardinal.entities.Chat;
 
 public interface ChatRepository extends JpaRepository<Chat, Integer> {
+	
 	public List<Chat> findByUser_UsernameEquals(@Param("username") String username);
 	
 	public List<Chat> findByUser_UsernameEqualsAndWorkspace_IdEquals(@Param("username") String username, @Param("id") int id);
- }
+
+
+}
