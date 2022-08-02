@@ -27,7 +27,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RegisterComponent,
     HelpComponent,
     NavbarComponent,
-
   ],
   imports: [
     BrowserModule,
