@@ -56,15 +56,12 @@ public class ChatController {
 		return chats;
 	}
 	
-	//mailman is map that contains the object types as a list of string keys - if the object it's mapped to is a workspace,
-	//the string should be called workspace. This map allows the mailan to carry multiple of different kinds of objects to the 
-	//method for use. In this case, chat is a chat, workspace is a workspace and usernames is a list of strings
 	
-	@PostMapping("chats")
-	public Chat createChat(Principal principal, @RequestBody Map<String, Object> mailman, HttpServletResponse res) {
+	@PostMapping("chats/workspace/{id}")
+	public Chat createChat(Principal principal, @RequestBody Chat chat, HttpServletResponse res, @PathVariable int id) {
 		Chat newChat = null;
 		try {
-			newChat = chatServ.createChat((Chat)mailman.get("chat"), principal.getName(), (Workspace)mailman.get("workspace"), (List<String>)mailman.get("usernames"));
+			newChat = chatServ.createChat(newChat, principal.getName() , id);
 			if(newChat != null) {
 				res.setStatus(201);
 			}
@@ -85,11 +82,10 @@ public class ChatController {
 		}
 	}
 	
-	@PutMapping("chats/addUsers")
-	public Chat addUsers(HttpServletResponse res, Principal principal, @RequestBody Map<String, Object> mailman) {
-		Chat chat = null;
+	@PutMapping("chats/{id}/addUsers")
+	public Chat addUsers(HttpServletResponse res, Principal principal, @RequestBody Chat chat, @PathVariable int id) {
 		try {
-			chat = chatServ.addUsers((Chat)mailman.get("chat"), (List<String>)mailman.get("usernames"), principal.getName());
+			chat = chatServ.addUsers(chat, principal.getName(), id);
 		}catch(Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
@@ -99,17 +95,17 @@ public class ChatController {
 	}
 	
 	
-	@PutMapping("chats/addUser/{username}")
-	public Chat addUser(HttpServletResponse res, Principal principal, @RequestBody Chat chat, @PathVariable String username) {
-		try {
-			chat = chatServ.addUser(chat, username, principal.getName());
-		}catch(Exception e) {
-			e.printStackTrace();
-			res.setStatus(400);
-		}
-		
-		return chat;
-	}
+//	@PutMapping("chats/addUser/{username}")
+//	public Chat addUser(HttpServletResponse res, Principal principal, @RequestBody Chat chat, @PathVariable String username) {
+//		try {
+//			chat = chatServ.addUser(chat, username, principal.getName());
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//			res.setStatus(400);
+//		}
+//		
+//		return chat;
+//	}
 	
 	
 	
