@@ -59,9 +59,15 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	@Override
-	public Message editMessage(Message oldMessage, Message newMessage, String username) {
+	public Message editMessage(int id, Message newMessage, String username) {
 		User user = userRepo.findByUsername(username);
-		if(user.equals(oldMessage.getUser())) {
+		Message oldMessage = null;
+		Optional<Message> op = messageRepo.findById(id);
+		if(op.isPresent()) {
+			oldMessage = op.get();
+		}
+		
+		if(oldMessage != null && user.equals(oldMessage.getUser())) {
 			oldMessage.setContent(newMessage.getContent());
 			oldMessage = messageRepo.saveAndFlush(oldMessage);
 		}

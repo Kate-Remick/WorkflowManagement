@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,6 +66,31 @@ public class MessageController {
 		return message;
 	}
 	
+	@PutMapping("messages/{id}")
+	public Message editMessage(Principal principal, @RequestBody Message message, @PathVariable int id, HttpServletResponse res ) {
+		try {
+			message = messageServ.editMessage(id, message, principal.getName());
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			res.setStatus(400);		}
+		return message;
+	}
+	
+	@DeleteMapping("messages/{id}")
+	public void deleteMessage(Principal principal, @PathVariable int id, HttpServletResponse res, @RequestBody Message message) {
+		try {
+			boolean deleted = messageServ.deleteMessage(message, principal.getName());
+			if(!deleted) {
+				res.setStatus(401);
+			}else {
+				res.setStatus(204);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
+	}
 	
 	
 }

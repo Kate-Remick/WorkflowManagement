@@ -15,7 +15,7 @@ public interface MessageService {
 	
 	public Message createMessage(int chatId, String username, Message message);
 	
-	public Message editMessage(Message oldMessage, Message newMessage, String username);
+	public Message editMessage(int id, Message newMessage, String username);
 	
 	public boolean deleteMessage(Message message, String username);
 	
