@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.nmk.cardinal.entities.Chat;
 import com.nmk.cardinal.entities.User;
@@ -11,6 +12,7 @@ import com.nmk.cardinal.entities.Workspace;
 import com.nmk.cardinal.repositories.ChatRepository;
 import com.nmk.cardinal.repositories.UserRepository;
 
+@Service
 public class ChatServiceImpl  implements ChatService{
 
 	@Autowired 
@@ -87,12 +89,12 @@ public class ChatServiceImpl  implements ChatService{
 
 	@Override
 	public List<Chat> getUserChats(String username) {
-		return chatRepo.findByUser_UsernameEquals(username);
+		return chatRepo.findByUsers_UsernameEquals(username);
 	}
 
 	@Override
 	public List<Chat> getWorkspaceChats(String username, int workspaceId) {
-		return chatRepo.findByUser_UsernameEqualsAndWorkspace_IdEquals(username, workspaceId);
+		return chatRepo.findByUsers_UsernameEqualsAndWorkspace_IdEquals(username, workspaceId);
 	}
 
 	
