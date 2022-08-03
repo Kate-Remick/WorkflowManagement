@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ChatService {
-  private url = environment.baseUrl + "api/cards";
+  private url = environment.baseUrl + "api/chats";
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
