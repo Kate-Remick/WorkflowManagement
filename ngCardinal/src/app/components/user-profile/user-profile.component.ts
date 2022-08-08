@@ -1,4 +1,7 @@
+import { UserService } from './../../services/user.service';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-
-  constructor() { }
+  loggedInUser: User = new User();
+  constructor(private authServ: AuthService, private userServ: UserService) { }
 
   ngOnInit(): void {
   }
 
+  getUser(){
+    this.userServ.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+      },
+      error: (problem) => {
+        console.error('HttpComponent.loadProducts(): error loading products:');
+        console.error(problem);
+      }
+    });
+  }
 }

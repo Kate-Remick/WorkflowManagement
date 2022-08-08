@@ -1,1 +1,15 @@
-<p>register works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <div class="registration">
+        <label>First Name: </label><input type="text" name="firstName" [(ngModel)]="newUser.firstName"/>
+        <label>Last Name: </label><input type="text" name="lastName" [(ngModel)]="newUser.lastName"/>
+        <label>Email Address:</label><input type="text" name="email" [(ngModel)]="newUser.email"/>
+        <label>Username: </label><input type="text" name="username" [(ngModel)]="newUser.username"/>
+        <label>Password: </label><input type="password" name="password" [(ngModel)]="newUser.password"/>
+      </div>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+</div>

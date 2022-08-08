@@ -1,1 +1,5 @@
-<p>login works!</p>
+<div>
+  <label>Username:</label><input type="text" name="username" [(ngModel)]="user.username"/>
+  <label>Password:</label><input type="password" name="password" [(ngModel)]="user.password"/>
+  <button class="btn btn-success-sm" (click)="login(user)">Login</button>
+</div>
