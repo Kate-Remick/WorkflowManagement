@@ -13,6 +13,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private authServ: AuthService, private userServ: UserService) { }
 
   ngOnInit(): void {
+    this.getUser();
   }
 
   getUser(){

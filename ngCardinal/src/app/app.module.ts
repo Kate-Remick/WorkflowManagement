@@ -13,6 +13,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { RegisterComponent } from './components/register/register.component';
 import { HelpComponent } from './components/help/help.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 
@@ -27,6 +28,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RegisterComponent,
     HelpComponent,
     NavbarComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
