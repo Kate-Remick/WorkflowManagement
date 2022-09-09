@@ -40,7 +40,7 @@ public class MessageController {
 		return messages;
 	}
 	
-	@GetMapping("messages/{chatId}/after")
+	@PostMapping("messages/{chatId}/after")
 	public List<Message> getMessagesInChatAfterDate(@PathVariable int chatId, @RequestBody LocalDateTime date, Principal principal,
 			HttpServletResponse res){
 		List<Message> messages = null;

@@ -24,6 +24,7 @@ public interface WorkspaceService {
 	
 	public Workspace show(int id);
 	
+	public Workspace getWorkspaceById(int id);
 	
 	
 }

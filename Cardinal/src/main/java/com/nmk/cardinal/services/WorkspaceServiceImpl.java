@@ -136,6 +136,16 @@ public class WorkspaceServiceImpl implements WorkspaceService{
 		return workspace;
 	}
 
+	@Override
+	public Workspace getWorkspaceById(int id) {
+		Workspace workspace = null;
+		Optional<Workspace> op = workRepo.findById(id);
+		if(op.isPresent()) {
+			workspace = op.get();
+		}
+		return workspace;
+	}
+
 	
 	
 }

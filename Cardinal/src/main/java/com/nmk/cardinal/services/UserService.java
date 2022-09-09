@@ -21,5 +21,7 @@ public interface UserService {
 	public boolean destroy(String username, int id);
 	
 	public boolean reactivate(String username, int id);
+	
+	public User findByUsername(String username);
 
 }

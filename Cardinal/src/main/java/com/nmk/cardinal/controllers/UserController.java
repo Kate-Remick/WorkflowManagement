@@ -36,6 +36,17 @@ public class UserController {
 		
 		return users;
 	}
+	@GetMapping("users/loggedIn")
+	public User getLoggedInUser(HttpServletResponse res, Principal principal) {
+		User user = null;
+		try {
+			user = userService.findByUsername(principal.getName());
+			res.setStatus(200);
+		}catch(Exception e) {
+			res.setStatus(400);
+		}
+		return user;
+	}
 	
 	@GetMapping("users/active")
 	public List<User> indexActive(HttpServletResponse res, Principal principal){

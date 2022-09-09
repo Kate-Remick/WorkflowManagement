@@ -46,6 +46,14 @@ public class WorkspaceController {
 		}		
 		return workspaces;
 	}
+	@GetMapping("workspaces/{id}")
+	public Workspace getWorkspaceById(@PathVariable int id, HttpServletResponse res, Principal principal){
+		Workspace workspace = workspaceService.getWorkspaceById(id);
+		if(workspace == null) {
+			res.setStatus(404);
+		}		
+		return workspace;
+	}
 	
 	@PostMapping("workspaces")
 	public Workspace create(HttpServletResponse res, HttpServletRequest req, Principal principal, @RequestBody Workspace workspace) {

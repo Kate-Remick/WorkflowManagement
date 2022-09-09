@@ -135,4 +135,12 @@ public class UserServiceImpl implements UserService {
 		return existing.isEnabled();		
 	}
 
+	@Override
+	public User findByUsername(String username) {
+		
+		return userRepo.findByUsername(username);
+	}
+	
+	
+
 }
