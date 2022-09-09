@@ -29,6 +29,17 @@ export class WorkspaceService {
     return localStorage.getItem('credentials');
   }
 
+  getWorkspaceById(id: number): Observable<Workspace>{
+    return this.http.get<Workspace>(this.url + "/" + id, this.getHttpOptions()).pipe(
+      catchError((err: any)=>{
+        console.log(err);
+        return throwError(
+          () => new Error('error:' + err)
+        );
+      })
+    );
+  }
+
   getManagedWorkspaces():Observable<Workspace[]>{
     return this.http.get<Workspace[]>(this.url + "/managed", this.getHttpOptions()).pipe(
       catchError((err: any) => {

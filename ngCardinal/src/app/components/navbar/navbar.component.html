@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
   <a class="navbar-brand" [routerLink]="['/home']">Home</a>
+  <a *ngIf="loggedIn()" class="navbar-brand" [routerLink]="['/dashboard']">Dashbaord</a>
+  <a *ngIf="!loggedIn()" class="navbar-brand" [routerLink]="['/login']">Login</a>
+  <a *ngIf="!loggedIn()" class="navbar-brand" [routerLink]="['/register']">Register</a>
+  <a *ngIf="loggedIn()" class="navbar-brand" ><app-logout></app-logout></a>
 
   </div>
 

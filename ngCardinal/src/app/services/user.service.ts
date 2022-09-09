@@ -29,7 +29,7 @@ export class UserService {
       catchError((err: any) => {
       console.log(err);
       return throwError(
-        () => new Error(' error finding all topics : ' + err)
+        () => new Error(' error retrieving user in service ' + err)
       );
       })
     );

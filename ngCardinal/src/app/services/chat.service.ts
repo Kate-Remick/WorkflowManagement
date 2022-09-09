@@ -61,7 +61,7 @@ export class ChatService {
   }
 
   addUsers(chat: Chat, id: number): Observable<Chat>{
-    return this.http.get<Chat>(this.url + "/" + id + "/addUsers",  ,this.getHttpOptions()).pipe(
+    return this.http.get<Chat>(this.url + "/" + id + "/addUsers", this.getHttpOptions()).pipe(
       catchError((err: any) => {
       console.log(err);
       return throwError(

@@ -13,7 +13,7 @@ export class Workspace {
   users: User [];
   decks: Deck [];
   chats: Chat [];
-  manager: User [];
+  manager: User | null;
 
   constructor(
     id: number = 0,
@@ -25,7 +25,7 @@ export class Workspace {
     users: User [] = [],
     decks: Deck [] = [],
     chats: Chat [] = [],
-    manager: User [] = []
+    manager: User | null = null
     ){
     this.id = id;
     this.name = name;

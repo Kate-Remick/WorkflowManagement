@@ -17,8 +17,8 @@ export class Card {
     completed: boolean = false,
     dueDate: Date | null = null,
     completedAt: Date | null = null,
-    deck: Deck | null,
-    assignedUser: User | null
+    deck: Deck | null = null,
+    assignedUser: User | null = null
     ){
     this.id = id;
     this.name = name;

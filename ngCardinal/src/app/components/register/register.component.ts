@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   newUser: User = new User();
+  registrationError: boolean = false;
 
 
   constructor(private authServ: AuthService, private router: Router) { }
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
           if(u.username && u.password){
           this.authServ.login(u.username, u.password).subscribe({
             next:(loggedInUser)=>{
-              this.router.navigateByUrl('/user')
+              this.router.navigateByUrl('/dashboard')
             }
           })
         }
@@ -30,6 +31,7 @@ export class RegisterComponent implements OnInit {
         error: (problem) => {
           console.error('HttpComponent.reload(): error registering');
           console.error(problem);
+          this.registrationError = true;
         }
       });
   }
