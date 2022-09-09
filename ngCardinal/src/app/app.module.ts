@@ -14,6 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HelpComponent } from './components/help/help.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { WorkspaceBuilderComponent } from './components/workspace-builder/workspace-builder.component';
 
 
 
@@ -29,6 +30,7 @@ import { ChatComponent } from './components/chat/chat.component';
     HelpComponent,
     NavbarComponent,
     ChatComponent,
+    WorkspaceBuilderComponent,
   ],
   imports: [
     BrowserModule,

@@ -79,4 +79,16 @@ export class WorkspaceService {
       })
     );
   }
+
+  setCurrentWorkspace(workspace : Workspace): void{
+    let key = 'currentWorkspace';
+    localStorage.setItem(key, JSON.stringify(workspace) );
+  }
+  getCurrentWorkspace(): Workspace | null{
+    let stringWorkspace =  localStorage.getItem('currentWorkspace');
+    if(stringWorkspace){
+      return JSON.parse(stringWorkspace);
+    }
+    return null;
+  }
 }
