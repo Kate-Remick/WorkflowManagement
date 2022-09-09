@@ -1,2 +1,31 @@
-<p>user-profile works!</p>
-<p>{{loggedInUser.username}}</p>
+<div class="main row">
+  <!-- **********************  User Details *************************** -->
+  <div id="user-info" class="col-sm-3">
+    <h5>Username: {{loggedInUser.username}}</h5>
+    <h5>Current Email: {{loggedInUser.email}}</h5>
+  </div>
+
+
+  <!-- ************************ Workspaces ************************* -->
+  <div id="workspace-list" class="col-sm-6">
+    <div class="workspace-info">
+
+    </div>
+    <div class="workspace-new">
+      <button class="btn btn-primary btn-sm" (click)="createNewWorkspace()"  >New Workspace</button>
+    </div>
+    <!-- ************************ Assignments ************************* -->
+    <div id="assignments">
+      <h3 *ngIf="assignments.length > 0" >Your Assignments: </h3>
+      <h3 *ngIf="assignments.length ==0">You have no assigned tasks</h3>
+      <div>
+
+      </div>
+    </div>
+  </div>
+  <!-- ************************ Chats ************************* -->
+  <div class="col-sm-3" id="chats">
+    <app-chat>Something went wrong</app-chat>
+</div>
+
+</div>

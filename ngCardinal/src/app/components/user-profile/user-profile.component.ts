@@ -35,7 +35,9 @@ export class UserProfileComponent implements OnInit {
   goToWorkspace(workspace: Workspace): void{
   }
 
-
+  createNewWorkspace():void{
+    this.router.navigateByUrl('builder');
+  }
 
   // ********************* Page Dynamics ***************************
 
@@ -46,7 +48,6 @@ export class UserProfileComponent implements OnInit {
     this.userServ.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser = user;
-        this.getUserChats();
         this.getAssignments();
       },
       error: (problem) => {

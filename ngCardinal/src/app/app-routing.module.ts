@@ -1,3 +1,4 @@
+import { WorkspaceBuilderComponent } from './components/workspace-builder/workspace-builder.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'dashboard', component: UserProfileComponent},
   {path: 'workspace', component: WorkspaceComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'builder', component: WorkspaceBuilderComponent}
 ];
 
 @NgModule({
