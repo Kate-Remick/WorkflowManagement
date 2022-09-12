@@ -1,1 +1,35 @@
-<p>workspace works!</p>
+<div class="main container-fluid">
+  <!-- ******************  Header ****************** -->
+  <div class="row" id="top-row">
+    <h1>{{workspace?.name}}</h1>
+  </div>
+  <div class="row" id="mid-row">
+     <!-- ******************  Sidebar ****************** -->
+     <div class="col-sm-2">
+      <button name="addCard" class="btn btn-secondary-sm" > Add New Card </button>
+    </div>
+    <!-- ******************  Main workspace and decks ****************** -->
+    <div class="col-sm-7">
+      <div class="row" id="decks">
+          <div class="col-sm" *ngFor="let deck in workspace?.decks" >
+            <div class="row" *ngFor="let card in deck.cards" >
+              <h4>{{card.name}}</h4>
+              <p>{{card.dueDate}}</p>
+              <p>{{card.completed}}</p>
+              <p>{{card.assignedUser.username}}</p>
+              <button (click)="completeCard(card)">Complete</button>
+              <p>{{card.description}}</p>
+              <button (click)="startEditCard(card)" >Edit</button>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- ******************  Chat ****************** -->
+    <div class="col-sm-3" id="chat">
+      <app-chat></app-chat>
+    </div>
+  </div>
+  <!-- ******************  Footer ****************** -->
+  <div class="row" id="bottom-row">
+  </div>
+</div>

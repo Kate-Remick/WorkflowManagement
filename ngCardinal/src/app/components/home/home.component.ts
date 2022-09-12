@@ -8,14 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+
+  //************** Seup ********************** */
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  // ********** navigation **************
+  // ********** Navigation **************
 
   goToRegister():void{
     this.router.navigateByUrl('/register');
   }
+
+  //******************** Page Dynamics ***************** */
 }
